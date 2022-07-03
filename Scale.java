@@ -56,48 +56,31 @@ public abstract class Scale implements Serializable{
             public static void menu(){
                 boolean keepGoing = true;
                 while(keepGoing == true){
-                        for(int i = 0; i < Main.scales.size(); i++){
-                                if(Main.scales.get(i) instanceof MajorScale){
-                                        System.out.println(i + ") " + Main.scales.get(i).getName() + " Major.");
-                                }
-                                else if(Main.scales.get(i) instanceof MinorScale){
-                                        System.out.println(i + ") " +  Main.scales.get(i).getName() + " Minor.");
-                                }
-                                else if(Main.scales.get(i) instanceof MelodicMinorScale){
-                                        System.out.println(i + ") " +  Main.scales.get(i).getName() + " Melodic Minor.");
-                                }
-                                else if(Main.scales.get(i) instanceof HarmonicMinorScale){
-                                        System.out.println(i + ") " +  Main.scales.get(i).getName() + " Harmonic Minor.");
-                                }
-                                else if(Main.scales.get(i) instanceof CustomScale){
-                                        System.out.println(i + ") " + Main.scales.get(i).getName() + ".");
-                                }
-                                else{
+                        Main.clearScreen();
+                        
+                        System.out.println("1) View a scale");
+                        System.out.println("2) Delete a scale\n");
+                        System.out.println("3) Go Back\n");
+
+                        Integer option = Integer.parseInt(Main.userInput.nextLine());
+
+                        switch(option){
+                                case 1: Main.clearScreen();
+                                        listScales();
+                                        System.out.print("\nEnter the scale index: ");
+                                        int viewScale = Integer.parseInt(Main.userInput.nextLine());
+
+                                        viewScale(viewScale);
                                         break;
-                                }
-                        }
-
-                                System.out.println("\n1) View a scale");
-                                System.out.println("2) Delete a scale\n");
-                                System.out.println("3) Go Back\n");
-
-                                Integer option = Integer.parseInt(Main.userInput.nextLine());
-
-                                switch(option){
-                                        case 1: 
-                                                System.out.print("\nEnter the scale index: ");
-                                                int viewScale = Integer.parseInt(Main.userInput.nextLine());
-
-                                                viewScale(viewScale);
-                                                
-                                        case 2: 
-                                                System.out.print("\nEnter the scale index: ");
-                                                Main.scales.remove(Integer.parseInt(Main.userInput.nextLine()));
-                                                Main.clearScreen();
-                                                break;   
-                                        case 3:Main.clearScreen();
-                                                keepGoing = false;
-                                                break;
+                                case 2: Main.clearScreen();
+                                        listScales();
+                                        System.out.print("\nEnter the scale index: ");
+                                        Main.scales.remove(Integer.parseInt(Main.userInput.nextLine()));
+                                        Main.clearScreen();
+                                        break;   
+                                case 3:Main.clearScreen();
+                                        keepGoing = false;
+                                        break;
                                 }
                         }
                 } // end menu
@@ -158,6 +141,29 @@ public abstract class Scale implements Serializable{
             return newScale;
             } // end findScale
             
+            public static void listScales(){
+                for(int i = 0; i < Main.scales.size(); i++){
+                        if(Main.scales.get(i) instanceof MajorScale){
+                                System.out.println(i + ". " + Main.scales.get(i).getName() + " Major.");
+                        }
+                        else if(Main.scales.get(i) instanceof MinorScale){
+                                System.out.println(i + ". " +  Main.scales.get(i).getName() + " Minor.");
+                        }
+                        else if(Main.scales.get(i) instanceof MelodicMinorScale){
+                                System.out.println(i + ". " +  Main.scales.get(i).getName() + " Melodic Minor.");
+                        }
+                        else if(Main.scales.get(i) instanceof HarmonicMinorScale){
+                                System.out.println(i + ". " +  Main.scales.get(i).getName() + " Harmonic Minor.");
+                        }
+                        else if(Main.scales.get(i) instanceof CustomScale){
+                                System.out.println(i + ". " + Main.scales.get(i).getName() + ".");
+                        }
+                        else{
+                                break;
+                        }
+                }
+            } //end listScales
+
             public abstract ArrayList<Double> getScale();
 
             public abstract String rootNote();

@@ -48,12 +48,13 @@ public class Main {
                 case 1: clearScreen();
                         boolean keepGoing2 = true;
                         while(keepGoing2 == true){
+                                clearScreen();
                                 System.out.println("1) Find new Major scale");
                                 System.out.println("2) Find new Minor scale");
                                 System.out.println("3) Find new Melodic Minor scale");
                                 System.out.println("4) Find new Harmonic Minor scale");
                                 System.out.println("5) Find new Custom scale\n");
-                                System.out.println("6) View My Scales\n");
+                                System.out.println("6) My Scales\n");
                                 System.out.println("7) Go back\n");
 
                                 Integer option2 = Integer.parseInt(userInput.nextLine());
